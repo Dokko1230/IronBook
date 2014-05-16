@@ -1,0 +1,46 @@
+<div class="container main">
+  <div class="row">
+    <div class="twelve columns">
+      <form method="post" action="/lift">
+        Name<input name='name' type="text">
+        Weight<input name='weight' type="text">
+        Reps<input name='reps' type="text">
+        Sets<input name='sets' type="text">
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container lifts">
+  <div class="row">
+    
+  </div>
+</div>
+
+
+<script id='liftTemplate' type='text/x-handlebars-template'>
+  <div class='lift'>
+    <div class='liftName'> {{ name }} </div>
+    <div class='liftWeight'> {{ weight }} </div>
+    <div class='liftReps'> {{ reps }} </div>
+    <div class='liftSets'> {{ sets }} </div>
+  </div>
+</script>
+
+<script>
+
+  // $(function(){
+  //   new Shortly();
+  // });
+
+  window.Templates = {};
+  // $('[type="text/x-handlebars-template"]').each(function(index, div){
+  //   Templates[div.id] = Handlebars.compile(div.innerHTML);
+  // });
+</script>
+<% if (process.env.NODE_ENV !== "production") { %>
+<script src='/javascripts/app.js'></script>
+<% } else { %>
+<script src='/dist/app.js'></script>
+<% } %>
