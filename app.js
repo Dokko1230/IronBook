@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(app.router);
 
-// app.get('/', util.checkUser, handler.renderIndex);
-app.get('/', handler.renderIndex);
+app.get('/', util.checkUser, handler.renderIndex);
+// app.get('/', handler.renderIndex);
 
 app.get('/login', handler.loginUserForm);
 app.post('/login', handler.loginUser);

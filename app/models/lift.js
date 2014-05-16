@@ -5,6 +5,7 @@ var liftSchema = new mongoose.Schema({
   weight: Number,
   reps: Number,
   sets: Number,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   createdAt: { type: Date, default: Date.now }
 });
 
