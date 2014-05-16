@@ -23,3 +23,13 @@ a {
 .liftName {
 
 }
+
+.legend {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.container {
+  overflow: hidden;
+}

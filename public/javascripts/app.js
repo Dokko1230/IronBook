@@ -15,6 +15,29 @@ var LiftView = Backbone.View.extend({
     this.model.on('change', function() {
       this.render();
     }, this);
+
+    this.$el.draggable({ 
+      axis: 'x',
+      start: function(event, ui) {
+        console.log('started');
+      },
+      stop: function(event, ui) {
+        if($(this).offset().left > this.offsetWidth * .75 ) {
+          $(this).fadeOut();
+        } else {
+          // debugger;
+          $(this).animate({
+            left: '0'
+          }, 750);
+
+        }
+        console.log('stopped');
+      }
+     });
+    this.$el.on('dragcreate', function(event, ui) {
+      console.log(ui.position);
+      debugger;
+    });
   },
   render: function() {
     this.$el.html(this.template(this.model.attributes));

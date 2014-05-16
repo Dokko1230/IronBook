@@ -1,11 +1,14 @@
+<div class="legend"> (110 / 3) ^ 2 = 110 kg for 3 reps, for 2 sets
+</div>
+
 <div class="container main">
   <div class="row">
     <div class="twelve columns">
       <form method="post" action="/lift">
-        Name<input name='name' type="text">
-        Weight<input name='weight' type="text">
-        Reps<input name='reps' type="text">
-        Sets<input name='sets' type="text">
+        Name: <input name='name' type="text">
+        Weight: <input name='weight' type="text">
+        Reps: <input name='reps' type="text">
+        Sets: <input name='sets' type="text">
         <input type="submit">
       </form>
     </div>
@@ -18,15 +21,11 @@
   </div>
 </div>
 
-
 <script id='liftTemplate' type='text/x-handlebars-template'>
   <div class='liftName'> {{ name }} </div>
-  <div class='liftWeight'> {{ weight }} </div>
-  <div class='liftReps'> {{ reps }} </div>
-  <div class='liftSets'> {{ sets }} </div>
+  <div class='liftDescription'> ({{ weight }} / {{ reps }}) ^ {{ sets }} </div>
   <button>PR!</button>
 </script>
-
 
 <script>
 
