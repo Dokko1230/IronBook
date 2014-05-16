@@ -46,4 +46,6 @@ app.post('/signup', handler.signupUser);
 app.post('/lift', handler.saveLift);
 app.get('/lifts', handler.fetchLifts);
 
+app.put('/lift/:id', handler.updateLift);
+
 module.exports = app;
