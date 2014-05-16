@@ -6,6 +6,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var partials = require('express-partials');
+var util = require('./lib/utility');
+
 var routes = require('./routes');
 var users = require('./routes/user');
 
@@ -13,7 +16,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
@@ -25,6 +28,13 @@ app.use(app.router);
 
 app.get('/', routes.index);
 app.get('/users', users.list);
+
+app.get('/login', handler.loginUserForm);
+app.post('/login', handler.loginUser);
+app.get('/logout', handler.logoutUser);
+
+app.get('/signup', handler.signupUserForm);
+app.post('/signup', handler.signupUser);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
