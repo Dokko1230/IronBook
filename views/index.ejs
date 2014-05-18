@@ -3,28 +3,43 @@
 
 <div class="container main">
   <div class="row">
-    <div class="twelve columns">
-      <form method="post" action="/lift">
-        Name: <input name='name' type="text">
-        Weight: <input name='weight' type="text">
-        Reps: <input name='reps' type="text">
-        Sets: <input name='sets' type="text">
-        <input type="submit">
+    <div class="col-md-12">
+      <form role="form" method="post" action="/lift">
+        <div class="form-group">
+          <label for="name">Name of workout</label>
+          <input class="form-control" placeholder="Powercleans, squats, etc.." name='name' type="text">
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight</label>
+          <input class="form-control" placeholder="15" name='weight' type="text">
+        </div>
+        <div class="form-group">
+          <label for="reps">Reps</label>
+          <input class="form-control" placeholder="8" name='reps' type="text">
+        </div>
+        <div class="form-group">
+          <label for="name">Sets</label>
+          <input class="form-control" placeholder="3" name='sets' type="text">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>
   </div>
 </div>
 
 <div class="container lifts">
-  <div class="row">
-    
-  </div>
 </div>
 
 <script id='liftTemplate' type='text/x-handlebars-template'>
-  <div class='liftName'> {{ name }} </div>
-  <div class='liftDescription'> ({{ weight }} / {{ reps }}) ^ {{ sets }} </div>
-  <button>PR!</button>
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class='liftName'> {{ name }} </h4>
+    </div>
+    <div class="col-md-6">
+      <div class='liftDescription'> {{ weight }} kgs for {{ reps }} reps for {{ sets }} sets </div>
+      <button class="btn btn-primary">PR!</button>
+    </div>
+  </div>
 </script>
 
 <script>

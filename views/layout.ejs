@@ -5,10 +5,13 @@
     <title>IronBook</title>
     <% if (process.env.NODE_ENV !== "production") { %>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel='stylesheet' type="text/css" href='/bower_components/bootstrap/dist/css/bootstrap.css'>
     <% } else { %>
     <link rel='stylesheet' type="text/css" href="dist/style.min.css">
+    <link rel='stylesheet' type="text/css" href='/bower_components/bootstrap/dist/css/bootstrap.css'>
     <% } %>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src='/bower_components/bootstrap/dist/js/bootstrap.js'></script>
     <script src="/bower_components/jquery-ui/ui/jquery-ui.js"></script>
     <script src="/bower_components/underscore/underscore.js"></script>
     <script src="/bower_components/backbone/backbone.js"></script>

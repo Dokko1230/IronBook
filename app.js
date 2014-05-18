@@ -12,7 +12,6 @@ var util = require('./lib/utility');
 var handler = require('./lib/request-handler');
 
 var routes = require('./routes');
-var users = require('./routes/user');
 
 var app = express();
 

@@ -8,7 +8,7 @@ var Lift = Backbone.Model.extend({
     return '/updateDay/';
   },
   saveForLater: function() {
-    return '/saveForLater/'
+    return '/saveForLater/';
   }
 
 });
@@ -110,7 +110,7 @@ $(function() {
       for(var i = 0; i < lifts.length; i++) {
         var lift = new Lift(lifts[i]);
         var liftView = new LiftView({model: lift});
-        $('.lifts .row').append(liftView.$el);
+        $('.lifts').append(liftView.$el);
       }
     }
   });
