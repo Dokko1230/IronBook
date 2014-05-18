@@ -1,17 +1,13 @@
 var mongoose = require('mongoose');
 
-var liftSchema = new mongoose.Schema({
-  name: String,
-  weight: Number,
-  reps: Number,
-  sets: Number,
+var daySchema = new mongoose.Schema({
+  date: Number,
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  completed: [ { type: String } ],
-  todo: { type: Boolean, default: false },
+  lifts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Lift'}],
   createdAt: { type: Date, default: Date.now }
 });
 
-var Lift = mongoose.model('Lift', liftSchema);
+var Day = mongoose.model('Day', daySchema);
 
 // linksSchema.pre('save', function(next) {
 //   var shasum = crypto.createHash('sha1');
@@ -20,4 +16,4 @@ var Lift = mongoose.model('Lift', liftSchema);
 //   next();
 // });
 
-module.exports = Lift;
+module.exports = Day;

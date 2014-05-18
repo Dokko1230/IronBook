@@ -6,6 +6,9 @@ var Lift = Backbone.Model.extend({
   },
   finishUrl: function() {
     return '/updateDay/';
+  },
+  saveForLater: function() {
+    return '/saveForLater/'
   }
 
 });
@@ -29,8 +32,11 @@ var LiftView = Backbone.View.extend({
         if($(this).offset().left > this.offsetWidth * .75 ) {
           $(this).fadeOut();
           console.log('finishing lift');
-          debugger;
           that.finishLift();
+        } else if($(this).offset().left < this.offsetWidth * - 1 * .5 ) {
+          $(this).fadeOut();
+          that.saveForLater();
+          debugger;
         } else {
           // debugger;
           $(this).animate({
@@ -43,7 +49,6 @@ var LiftView = Backbone.View.extend({
      });
     this.$el.on('dragcreate', function(event, ui) {
       console.log(ui.position);
-      debugger;
     });
   },
   render: function() {
@@ -70,6 +75,15 @@ var LiftView = Backbone.View.extend({
       url: that.model.finishUrl(),
       success: function() {
         console.log('finished syncing!');
+      }
+    });
+  },
+  saveForLater: function() {
+    var that = this;
+    Backbone.sync('update', this.model, {
+      url: that.model.saveForLater(),
+      success: function() {
+        console.log('Maybe tomorrow...');
       }
     });
   }
