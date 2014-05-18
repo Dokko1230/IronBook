@@ -1,3 +1,15 @@
+var randomColors = [
+  'blueviolet',
+  'cadeblue',
+  'chocolate',
+  'brown',
+  'darkblue',
+  'darkcyan',
+  'darkred',
+  'powderblue',
+  'crimson'
+];
+
 var Lift = Backbone.Model.extend({
   initialize: function() {
   },
@@ -22,6 +34,9 @@ var LiftView = Backbone.View.extend({
     this.model.on('change', function() {
       this.render();
     }, this);
+
+    var randomColor = randomColors[Math.floor(Math.random() * randomColors.length)];
+    this.$el.css('background-color', randomColor);
 
     this.$el.draggable({ 
       axis: 'x',

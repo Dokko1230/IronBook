@@ -2,34 +2,39 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+header {
+  font-family: 'Yellowtail', cursive;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+}
+
+header h2 {
+  margin: 0;
+}
+
 a {
   color: #00B7FF;
 }
 
+.lifts {
+  margin-top: 10px;
+}
 .lift {
-  height: 65px;
-  background-color: cadetblue;
-  padding: 22px;
+  padding: 10px;
   color: white;
 }
 
-.lift * {
-  float: left;
-  margin-left: 20px;
+.lift .row * {
+  text-align: center;
 }
 
 .lift button {
-  margin-top: -7px;
 }
 
 .liftName {
 
-}
-
-.legend {
-  position: fixed;
-  top: 0;
-  right: 0;
 }
 
 .container {

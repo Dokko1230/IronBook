@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>IronBook</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <% if (process.env.NODE_ENV !== "production") { %>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <link rel='stylesheet' type="text/css" href='/bower_components/bootstrap/dist/css/bootstrap.css'>
@@ -10,9 +11,13 @@
     <link rel='stylesheet' type="text/css" href="dist/style.min.css">
     <link rel='stylesheet' type="text/css" href='/bower_components/bootstrap/dist/css/bootstrap.css'>
     <% } %>
+    <link href='http://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
+
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src='/bower_components/bootstrap/dist/js/bootstrap.js'></script>
     <script src="/bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="/bower_components/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+
     <script src="/bower_components/underscore/underscore.js"></script>
     <script src="/bower_components/backbone/backbone.js"></script>
     <script src="/bower_components/handlebars/handlebars.js"></script>
@@ -20,7 +25,9 @@
   </head>
 
   <body>
-    <h1>IronBook</h1>
+    <header>
+      <h2>IronBook</h2>
+    </header>
     <%- body %>
   </body>
 </html>

@@ -1,6 +1,3 @@
-<div class="legend"> (110 / 3) ^ 2 = 110 kg for 3 reps, for 2 sets
-</div>
-
 <div class="container main">
   <div class="row">
     <div class="col-md-12">
@@ -31,19 +28,23 @@
 </div>
 
 <script id='liftTemplate' type='text/x-handlebars-template'>
-    <div>
+  <div class="row">
+    <div class="col-md-3">
       {{ name }} 
     </div>
-    <div>
+    <div class="col-md-3">
       {{ weight }} kgs for 
     </div>
-    <div>
+    <div class="col-md-3">
       {{ reps }} Reps and for
     </div>
-    <div>
+    <div class="col-md-3">
       {{ sets }} Sets
     </div>
-    <button class="btn btn-primary">PR!</button>
+    <div class="col-md-3">
+      <button class="btn btn-primary">PR!</button>
+    </div>
+  </div>
 </script>
 
 <script>
