@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,9 +7,19 @@ a {
 }
 
 .lift {
+  height: 65px;
+  background-color: cadetblue;
+  padding: 22px;
+  color: white;
 }
 
-.lift div {
+.lift * {
+  float: left;
+  margin-left: 20px;
+}
+
+.lift button {
+  margin-top: -7px;
 }
 
 .liftName {

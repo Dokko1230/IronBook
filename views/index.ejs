@@ -31,15 +31,19 @@
 </div>
 
 <script id='liftTemplate' type='text/x-handlebars-template'>
-  <div class="row">
-    <div class="col-md-6">
-      <h4 class='liftName'> {{ name }} </h4>
+    <div>
+      {{ name }} 
     </div>
-    <div class="col-md-6">
-      <div class='liftDescription'> {{ weight }} kgs for {{ reps }} reps for {{ sets }} sets </div>
-      <button class="btn btn-primary">PR!</button>
+    <div>
+      {{ weight }} kgs for 
     </div>
-  </div>
+    <div>
+      {{ reps }} Reps and for
+    </div>
+    <div>
+      {{ sets }} Sets
+    </div>
+    <button class="btn btn-primary">PR!</button>
 </script>
 
 <script>
