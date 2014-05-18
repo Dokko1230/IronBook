@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+var User = require('./user');
 
 var liftSchema = new mongoose.Schema({
   name: String,
   weight: Number,
   reps: Number,
   sets: Number,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  user: User
   createdAt: { type: Date, default: Date.now }
 });
 

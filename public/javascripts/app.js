@@ -3,6 +3,9 @@ var Lift = Backbone.Model.extend({
   },
   url: function() {
     return '/lift/' + this.get('_id');
+  },
+  finishUrl: function() {
+    return '/updateDay/';
   }
 
 });
@@ -11,6 +14,7 @@ var LiftView = Backbone.View.extend({
   template: Handlebars.compile($('#liftTemplate').html()),
   className: 'lift',
   initialize: function() {
+    var that = this;
     this.render();
     this.model.on('change', function() {
       this.render();
@@ -24,6 +28,9 @@ var LiftView = Backbone.View.extend({
       stop: function(event, ui) {
         if($(this).offset().left > this.offsetWidth * .75 ) {
           $(this).fadeOut();
+          console.log('finishing lift');
+          debugger;
+          that.finishLift();
         } else {
           // debugger;
           $(this).animate({
@@ -54,6 +61,15 @@ var LiftView = Backbone.View.extend({
       url: that.model.url(),
       success: function() {
         console.log('synced!');
+      }
+    });
+  },
+  finishLift: function() {
+    var that = this;
+    Backbone.sync('update', this.model, {
+      url: that.model.finishUrl(),
+      success: function() {
+        console.log('finished syncing!');
       }
     });
   }
