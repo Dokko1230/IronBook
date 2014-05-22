@@ -40,3 +40,14 @@ a {
 .container {
   overflow: hidden;
 }
+.nav-container {
+  background-color: black;
+}
+.nav-container a {
+  color: white;
+}
+.nav-container a:hover {
+  color: white;
+  text-decoration: none;
+  background-color: none;
+}

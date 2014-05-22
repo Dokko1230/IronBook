@@ -10,6 +10,49 @@ var randomColors = [
   'crimson'
 ];
 
+window.IronBook = Backbone.View.extend({
+  template: Handlebars.compile($('#appTemplate').html()),
+  events: {
+    'click li a.index':  'renderIndexView',
+    'click li a.create': 'renderCreateView'
+  },
+
+  initialize: function(){
+    $('body').append(this.render().$el);
+
+    this.router = new IronBook.Router({ 
+      el: this.$el.find('#container')
+    });
+
+    this.router.on('route', this.updateNav, this);
+
+    Backbone.history.start({ pushState: true });
+  },
+
+  render: function(){
+    this.$el.html( this.template() );
+    return this;
+  },
+
+  renderIndexView: function(e){
+    e && e.preventDefault();
+    this.router.navigate('/', { trigger: true });
+  },
+
+  renderCreateView: function(e){
+    e && e.preventDefault();
+    this.router.navigate('/create', { trigger: true });
+  },
+
+  updateNav: function(routeName){
+    this.$el.find('.navigation li a')
+      .removeClass('selected')
+      .filter('.' + routeName)
+      .addClass('selected');
+  }
+
+});
+
 var Lift = Backbone.Model.extend({
   initialize: function() {
   },
@@ -25,7 +68,32 @@ var Lift = Backbone.Model.extend({
 
 });
 
-var LiftView = Backbone.View.extend({
+IronBook.Lifts = Backbone.Collection.extend({
+  model: Lift,
+  url: '/lifts'
+});
+
+IronBook.LiftsView = Backbone.View.extend({
+  className: 'lifts',
+  initialize: function(){
+    this.collection.on('sync', this.addAll, this);
+    this.collection.fetch();
+  },
+  render: function() {
+    this.$el.empty();
+    return this;
+  },
+  addAll: function(){
+    this.collection.forEach(this.addOne, this);
+  },
+
+  addOne: function(item){
+    var view = new IronBook.LiftView({ model: item });
+    this.$el.append(view.$el);
+  }
+});
+
+IronBook.LiftView = Backbone.View.extend({
   template: Handlebars.compile($('#liftTemplate').html()),
   className: 'lift',
   initialize: function() {
@@ -51,7 +119,6 @@ var LiftView = Backbone.View.extend({
         } else if($(this).offset().left < this.offsetWidth * - 1 * .5 ) {
           $(this).fadeOut();
           that.saveForLater();
-          debugger;
         } else {
           // debugger;
           $(this).animate({
@@ -105,29 +172,48 @@ var LiftView = Backbone.View.extend({
 
 });
 
-var App = Backbone.Model.extend({
+IronBook.createLiftView = Backbone.View.extend({
+  template: Handlebars.compile($('#createTemplate').html()),
+  initialize: function() {
+    this.render();
+  },
+  render: function() {
+    this.$el.html(this.template());
+    return this;
+  }
 
 });
 
-var AppView = Backbone.View.extend({
+IronBook.Router = Backbone.Router.extend({
+  initialize: function(options){
+    this.$el = options.el;
+  },
 
+  routes: {
+    '':       'index',
+    'create': 'create'
+
+  },
+
+  swapView: function(view){
+    this.$el.html(view.render().$el);
+  },
+
+  index: function(){
+    var lifts = new IronBook.Lifts();
+    var liftsView = new IronBook.LiftsView({ collection: lifts });
+    this.swapView(liftsView);
+  },
+
+  create: function(){
+    this.swapView(new IronBook.createLiftView());
+  }
 });
+
 
 
 $(function() {
-  var userName = 'haku';
 
-  $.ajax({
-    url: '/lifts',
-    type: 'GET',
-    success: function(lifts) {
-      console.log('success ajax request');
-      for(var i = 0; i < lifts.length; i++) {
-        var lift = new Lift(lifts[i]);
-        var liftView = new LiftView({model: lift});
-        $('.lifts').append(liftView.$el);
-      }
-    }
-  });
+  new IronBook();
 
 });
