@@ -2,11 +2,16 @@ var mongoose = require('mongoose');
 
 var liftSchema = new mongoose.Schema({
   name: String,
-  weight: Number,
-  reps: Number,
-  sets: Number,
+  currentWeight: Number,
+  currentReps: Number,
+  currentSets: Number,
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  completed: [ { type: String } ],
+  completed: [{
+    date: String,
+    weight: Number,
+    reps: Number,
+    sets: Number
+  }],
   todo: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });

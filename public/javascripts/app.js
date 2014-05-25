@@ -1,6 +1,6 @@
 var randomColors = [
   'blueviolet',
-  'cadeblue',
+  'cadetblue',
   'chocolate',
   'brown',
   'darkblue',
@@ -14,7 +14,8 @@ window.IronBook = Backbone.View.extend({
   template: Handlebars.compile($('#appTemplate').html()),
   events: {
     'click li a.index':  'renderIndexView',
-    'click li a.create': 'renderCreateView'
+    'click li a.create': 'renderCreateView',
+    'click li a.stats': 'renderStatsView'
   },
 
   initialize: function(){
@@ -44,6 +45,11 @@ window.IronBook = Backbone.View.extend({
     this.router.navigate('/create', { trigger: true });
   },
 
+  renderStatsView: function(e){
+    e && e.preventDefault();
+    this.router.navigate('/stats', { trigger: true });
+  },
+
   updateNav: function(routeName){
     this.$el.find('.navigation li a')
       .removeClass('selected')
@@ -68,9 +74,20 @@ var Lift = Backbone.Model.extend({
 
 });
 
+var Stat = Backbone.Model.extend({
+  initialize: function() {
+
+  }
+});
+
 IronBook.Lifts = Backbone.Collection.extend({
   model: Lift,
   url: '/lifts'
+});
+
+IronBook.Stats = Backbone.Collection.extend({
+  model: Stat,
+  url: '/getStats'
 });
 
 IronBook.LiftsView = Backbone.View.extend({
@@ -104,6 +121,7 @@ IronBook.LiftView = Backbone.View.extend({
     }, this);
 
     var randomColor = randomColors[Math.floor(Math.random() * randomColors.length)];
+
     this.$el.css('background-color', randomColor);
 
     this.$el.draggable({ 
@@ -184,6 +202,35 @@ IronBook.createLiftView = Backbone.View.extend({
 
 });
 
+
+IronBook.StatsView = Backbone.View.extend({
+  className: 'stats',
+  template: Handlebars.compile($('#statsTemplate').html()),
+  initialize: function(){
+    this.collection.on('sync', function() {
+      this.$el.empty();
+      this.render();
+    }, this);
+    this.collection.fetch();
+  },
+  render: function() {
+    // debugger;
+    
+    var graph = new Rickshaw.Graph({
+        element: this.$el[0],
+        renderer: 'line',
+        series: [{
+                data: [ { x: 0, y: 40 }, { x: 1, y: 49 } ],
+                color: 'steelblue'
+        }]
+    });
+     
+    graph.render();
+
+    return this;
+  }
+});
+
 IronBook.Router = Backbone.Router.extend({
   initialize: function(options){
     this.$el = options.el;
@@ -191,7 +238,8 @@ IronBook.Router = Backbone.Router.extend({
 
   routes: {
     '':       'index',
-    'create': 'create'
+    'create': 'create',
+    'stats': 'stats'
 
   },
 
@@ -207,6 +255,10 @@ IronBook.Router = Backbone.Router.extend({
 
   create: function(){
     this.swapView(new IronBook.createLiftView());
+  },
+  stats: function() {
+    var stats = new IronBook.Stats();
+    this.swapView(new IronBook.StatsView({ collection: stats }));
   }
 });
 

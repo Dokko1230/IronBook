@@ -4,6 +4,7 @@
   <ul class="nav nav-pills">
     <li><a class="index">Home</a></li>
     <li><a class="create">Create</a></li>
+    <li><a class="stats">Stats</a></li>
   </ul>
 </div>
 
@@ -11,6 +12,10 @@
 </div>
 </script>
 
+<script id='statsTemplate' type='text/x-handlebars-template'>
+<div class="container stats-container">
+</div>
+</script>
 
 <script id='createTemplate' type='text/x-handlebars-template'>
 <div class="container main">
@@ -47,13 +52,13 @@
       {{ name }} 
     </div>
     <div class="col-md-3">
-      {{ weight }} kgs for 
+      {{ currentWeight }} kgs for 
     </div>
     <div class="col-md-3">
-      {{ reps }} Reps and for
+      {{ currentReps }} Reps and for
     </div>
     <div class="col-md-3">
-      {{ sets }} Sets
+      {{ currentSets }} Sets
     </div>
     <div class="col-md-3">
       <button class="btn btn-primary">PR!</button>

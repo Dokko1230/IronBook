@@ -44,6 +44,8 @@ app.post('/signup', handler.signupUser);
 app.post('/lift', handler.saveLift);
 app.get('/lifts', handler.fetchLifts);
 
+app.get('/getStats', handler.fetchStats);
+
 app.put('/updateDay', handler.updateDay);
 app.put('/saveForLater', handler.saveForLater);
 
