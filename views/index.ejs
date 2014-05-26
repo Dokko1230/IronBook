@@ -66,6 +66,10 @@
   </div>
 </script>
 
+<script id='statTemplate' type='text/x-handlebars-template'>
+  
+</script>
+
 <script>
 
   // $(function(){
@@ -79,6 +83,15 @@
 </script>
 <% if (process.env.NODE_ENV !== "production") { %>
 <script src='/javascripts/app.js'></script>
+<script src='/javascripts/CreateLiftView.js'></script>
+<script src='/javascripts/Lift.js'></script>
+<script src='/javascripts/Lifts.js'></script>
+<script src='/javascripts/LiftsView.js'></script>
+<script src='/javascripts/LiftView.js'></script>
+<script src='/javascripts/Stat.js'></script>
+<script src='/javascripts/Stats.js'></script>
+<script src='/javascripts/StatView.js'></script>
+<script src='/javascripts/StatsView.js'></script>
 <% } else { %>
 <script src='/dist/app.js'></script>
 <% } %>
