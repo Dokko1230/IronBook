@@ -237,3 +237,23 @@ the other one with 6 steps and 6 digits*/
   font-family: 'digital';
   src: url('http://thecodeplayer.com/uploads/fonts/DS-DIGI.TTF');
 }
+
+/** Calendar **/
+.clndr {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.clndr .table {
+  width: 100%;
+}
+.clndr td {
+  text-align: center;
+  border: 1px solid #999;
+}
+.clndr .clndr-controls > div {
+  float: left;
+  width: 33%;
+  text-align:center;
+  margin-bottom: 10px;
+}
