@@ -15,7 +15,8 @@ window.IronBook = Backbone.View.extend({
   events: {
     'click li a.index':  'renderIndexView',
     'click li a.create': 'renderCreateView',
-    'click li a.stats': 'renderStatsView'
+    'click li a.stats': 'renderStatsView',
+    'click li a.stopwatch': 'renderStopwatchView'
   },
 
   initialize: function(){
@@ -50,6 +51,11 @@ window.IronBook = Backbone.View.extend({
     this.router.navigate('/stats', { trigger: true });
   },
 
+  renderStopwatchView: function(e){
+    e && e.preventDefault();
+    this.router.navigate('/stopwatch', { trigger: true });
+  },
+
   updateNav: function(routeName){
     this.$el.find('.navigation li a')
       .removeClass('selected')
@@ -67,8 +73,8 @@ IronBook.Router = Backbone.Router.extend({
   routes: {
     '':       'index',
     'create': 'create',
-    'stats': 'stats'
-
+    'stats': 'stats',
+    'stopwatch': 'stopwatch'
   },
 
   swapView: function(view){
@@ -87,6 +93,9 @@ IronBook.Router = Backbone.Router.extend({
   stats: function() {
     var stats = new IronBook.Stats();
     this.swapView(new IronBook.StatsView({ collection: stats }));
+  },
+  stopwatch: function() {
+    this.swapView(new IronBook.StopwatchView());
   }
 });
 

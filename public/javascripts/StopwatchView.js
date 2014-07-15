@@ -1,21 +1,24 @@
 
-IronBook.StatView = Backbone.View.extend({
-  className: 'stat',
-  template: Handlebars.compile($('#statTemplate').html()),
+IronBook.StopwatchView = Backbone.View.extend({
+  className: 'stopwatch',
+  template: Handlebars.compile($('#stopwatchTemplate').html()),
   initialize: function(){
     this.render();
     // this.collection.fetch();
   },
   render: function() {
-    var data = [];
-    var completed = this.model.get('completed');
-    for(var i = 0; i < completed.length; i++) {
-      // debugger;
-      data.push({ 
-        x: Date.parse(new Date(completed[i].date)),
-        y: completed[i].weight
-      });
-    }
+    this.$el.empty();
+    this.$el.html(this.template());
+    return this;
+    // var data = [];
+    // var completed = this.model.get('completed');
+    // for(var i = 0; i < completed.length; i++) {
+    //   // debugger;
+    //   data.push({ 
+    //     x: Date.parse(new Date(completed[i].date)),
+    //     y: completed[i].weight
+    //   });
+    // }
     // var graph = new Rickshaw.Graph({
     //   element: this.$el[0],
     //   renderer: 'line',
