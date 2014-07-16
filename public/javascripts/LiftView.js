@@ -45,26 +45,32 @@ IronBook.LiftView = Backbone.View.extend({
     },
     'click .left-rep': function() {
       this.decrementReps();
+      this.editHandler();
       this.render();
     },
     'click .right-rep': function() {
       this.incrementReps();
+      this.editHandler();
       this.render();
     },
     'click .left-set': function() {
       this.decrementSets();
+      this.editHandler();
       this.render();
     },
     'click .right-set': function() {
       this.incrementSets();
+      this.editHandler();
       this.render();
     },
     'click .left-weight': function() {
       this.decrementWeight();
+      this.editHandler();
       this.render();
     },
     'click .right-weight': function() {
       this.incrementWeight();
+      this.editHandler();
       this.render();
     },
   },
@@ -85,6 +91,12 @@ IronBook.LiftView = Backbone.View.extend({
   },
   incrementWeight: function() {
     this.model.set('currentWeight', this.model.get('currentWeight') + 5);
+  },
+  editHandler: function() {
+    var that = this;
+    Backbone.sync('update', this.model, {
+      url: that.model.editUrl()
+    });
   },
   prHandler: function() {
     var that = this;

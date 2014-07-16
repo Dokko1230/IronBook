@@ -46,6 +46,7 @@ app.get('/lifts', handler.fetchLifts);
 
 app.get('/getStats', handler.fetchStats);
 
+app.put('/edit/:id', handler.updateLift);
 app.put('/updateDay', handler.updateDay);
 app.put('/saveForLater', handler.saveForLater);
 
