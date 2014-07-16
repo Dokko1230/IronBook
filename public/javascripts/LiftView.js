@@ -16,24 +16,20 @@ IronBook.LiftView = Backbone.View.extend({
     this.$el.draggable({ 
       axis: 'x',
       start: function(event, ui) {
-        console.log('started');
       },
       stop: function(event, ui) {
         if($(this).offset().left > this.offsetWidth * .75 ) {
           $(this).fadeOut();
-          console.log('finishing lift');
           that.finishLift();
         } else if($(this).offset().left < this.offsetWidth * - 1 * .5 ) {
           $(this).fadeOut();
           that.saveForLater();
         } else {
-          // debugger;
           $(this).animate({
             left: '0'
           }, 750);
 
         }
-        console.log('stopped');
       }
      });
     this.$el.on('dragcreate', function(event, ui) {

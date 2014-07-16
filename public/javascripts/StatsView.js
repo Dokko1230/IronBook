@@ -17,11 +17,11 @@ IronBook.StatsView = Backbone.View.extend({
     this.collection.forEach(this.addOne, this);
   },
   registerToCalendar: function(item){
-    //  for each completed
+    // https://github.com/kylestetz/CLNDR
     var events = [];
     _.forEach(item.get('completed'), function(completed, i) {
-    //    highlight that date
-    //    adding will rerender
+      //    highlight that date
+      //    adding will rerender
       //HACK FOR DATES MUST FIX LATERS LOL
       var splitted = completed.date.split('-');
       splitted[1] = parseInt(splitted[1]) + 1;
@@ -32,7 +32,9 @@ IronBook.StatsView = Backbone.View.extend({
   },
 
   addOne: function(item){
-    var view = new IronBook.StatView({ model: item });
-    this.$el.append(view.$el);
+    if(item.get('completed').length) {
+      var view = new IronBook.StatView({ model: item });
+      this.$el.append(view.$el);
+    }
   }
 });

@@ -110,12 +110,11 @@ a {
   font-size: 10px;
 }
 
-
 /** Stopwatch **/
 * {margin: 0; padding: 0;}
 
 body{
-  background: url('http://thecodeplayer.com/uploads/media/wood_pattern.png') repeat;
+  background: url('/images/wood_pattern.png') repeat;
 }
 
 .stopwatch-container {
@@ -231,11 +230,10 @@ the other one with 6 steps and 6 digits*/
   /*height = 40. digits = 6. hence -240 to move it completely to the top*/
 }
 
-
 /*Lets use a better font for the numbers*/
 @font-face {
   font-family: 'digital';
-  src: url('http://thecodeplayer.com/uploads/fonts/DS-DIGI.TTF');
+  src: url('/fonts/DS-DIGI.TTF');
 }
 
 /** Calendar **/
@@ -244,16 +242,33 @@ the other one with 6 steps and 6 digits*/
   border-radius: 10px;
   padding: 10px;
 }
-.clndr .table {
+.clndr .today {
+  background-color: #EDB61C !important;
+}
+.clndr .clndr-table {
   width: 100%;
 }
 .clndr td {
   text-align: center;
   border: 1px solid #999;
 }
+.clndr .event {
+  background-color: #73A722;
+}
 .clndr .clndr-controls > div {
   float: left;
   width: 33%;
   text-align:center;
   margin-bottom: 10px;
+}
+
+/** StatView **/
+.stat {
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.stat h5 {
+  margin-left: 10px;
+  padding-top: 10px;
 }

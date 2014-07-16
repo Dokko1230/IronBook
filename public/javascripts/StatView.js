@@ -1,4 +1,3 @@
-
 IronBook.StatView = Backbone.View.extend({
   className: 'stat',
   template: Handlebars.compile($('#statTemplate').html()),
@@ -7,34 +6,48 @@ IronBook.StatView = Backbone.View.extend({
     // this.collection.fetch();
   },
   render: function() {
-    var data = [];
-    var completed = this.model.get('completed');
-    for(var i = 0; i < completed.length; i++) {
-      // debugger;
-      data.push({ 
-        x: Date.parse(new Date(completed[i].date)),
-        y: completed[i].weight
-      });
-    }
-    // var graph = new Rickshaw.Graph({
-    //   element: this.$el[0],
-    //   renderer: 'line',
-    //   series: [{
-    //           data: data,
-    //           color: 'steelblue'
-    //   }]
-    // });
-    // var time = new Rickshaw.Fixtures.Time();
-    // var seconds = time.unit('second');
-    // var xAxis = new Rickshaw.Graph.Axis.Time({
-    //   graph: graph,
-    //   timeUnit: seconds
-    // });
-    // var x_axis = new Rickshaw.Graph.Axis.Time( { graph: graph } );
-    // var yAxis = new Rickshaw.Graph.Axis.Y({
-    //   graph: graph
-    // });
-    // graph.render();
+    this.$el.html(this.template(this.model.attributes));
 
+    var ctx = this.$el.find('.statChart')[0].getContext('2d');
+
+    var completed = this.model.get('completed');
+    var dates = _.pluck(completed, 'date');
+    var weights = _.pluck(completed, 'weight');
+    var data = {
+      labels: dates,
+      datasets: [
+          {
+              label: this.model.get('name'),
+              fillColor: "rgba(151,187,205,0.2)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              data: weights
+          }
+      ]
+    };
+
+    var options = {
+      scaleShowGridLines : true,
+      scaleGridLineColor : "rgba(0,0,0,.05)",
+      scaleGridLineWidth : 1,
+      bezierCurve : true,
+      bezierCurveTension : 0.4,
+      pointDot : true,
+      pointDotRadius : 4,
+      pointDotStrokeWidth : 1,
+      pointHitDetectionRadius : 20,
+      datasetStroke : true,
+      datasetStrokeWidth : 2,
+      datasetFill : true,
+      legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+    };
+
+    var myLineChart = new Chart(ctx).Line(data, options);
+    return this;
   }
 });
+
+
