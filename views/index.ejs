@@ -27,7 +27,7 @@
 
 <script id='statsTemplate' type='text/x-handlebars-template'>
 <div class="calendar"></div>
-<div class="container stats-container">
+<div class="stats-container">
 </div>
 </script>
 
@@ -66,13 +66,13 @@
       {{ name }} 
     </div>
     <div class="col-md-3">
-      {{ currentWeight }} kgs for 
+      <i class="left-weight fa fa-2x fa-minus-circle"></i><span>{{ currentWeight }} lbs</span><i class="right-weight fa fa-2x fa-plus-circle"></i>
     </div>
     <div class="col-md-3">
-      {{ currentReps }} Reps and for
+      <i class="left-rep fa fa-2x fa-minus-circle"></i><span>{{ currentReps }} reps</span><i class="right-rep fa fa-2x fa-plus-circle"></i>
     </div>
     <div class="col-md-3">
-      {{ currentSets }} Sets
+      <i class="left-set fa fa-2x fa-minus-circle"></i><span>{{ currentSets }} sets</span><i class="right-set fa fa-2x fa-plus-circle"></i>
     </div>
     <div class="col-md-3">
       <button class="btn btn-primary">PR!</button>
@@ -146,10 +146,6 @@ wrap up the 'numbers' in a cell to display only 1 digit-->
 </script>
 
 <script>
-
-  // $(function(){
-  //   new Shortly();
-  // });
 
   window.Templates = {};
   // $('[type="text/x-handlebars-template"]').each(function(index, div){

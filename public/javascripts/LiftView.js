@@ -42,7 +42,49 @@ IronBook.LiftView = Backbone.View.extend({
   events: {
     'click button': function() {
       this.prHandler();
-    }
+    },
+    'click .left-rep': function() {
+      this.decrementReps();
+      this.render();
+    },
+    'click .right-rep': function() {
+      this.incrementReps();
+      this.render();
+    },
+    'click .left-set': function() {
+      this.decrementSets();
+      this.render();
+    },
+    'click .right-set': function() {
+      this.incrementSets();
+      this.render();
+    },
+    'click .left-weight': function() {
+      this.decrementWeight();
+      this.render();
+    },
+    'click .right-weight': function() {
+      this.incrementWeight();
+      this.render();
+    },
+  },
+  decrementSets: function() {
+    this.model.set('currentSets', this.model.get('currentSets') - 1);
+  },
+  incrementSets: function() {
+    this.model.set('currentSets', this.model.get('currentSets') + 1);
+  },
+  decrementReps: function() {
+    this.model.set('currentReps', this.model.get('currentReps') - 1);
+  },
+  incrementReps: function() {
+    this.model.set('currentReps', this.model.get('currentReps') + 1);
+  },
+  decrementWeight: function() {
+    this.model.set('currentWeight', this.model.get('currentWeight') - 5);
+  },
+  incrementWeight: function() {
+    this.model.set('currentWeight', this.model.get('currentWeight') + 5);
   },
   prHandler: function() {
     var that = this;

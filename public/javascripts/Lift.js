@@ -9,6 +9,9 @@ var Lift = Backbone.Model.extend({
   },
   saveForLater: function() {
     return '/saveForLater/';
+  },
+  edit: function() {
+    return '/edit/';
   }
 
 });

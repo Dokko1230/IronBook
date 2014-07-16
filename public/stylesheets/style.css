@@ -64,6 +64,17 @@ a {
   padding: 10px;
   color: white;
 }
+.lift span {
+  margin: 0 20px;
+  vertical-align: middle;
+}
+.lift i:active {
+  position: relative;
+  top: 1px;
+}
+.lift i {
+  vertical-align: middle;
+}
 
 .lift .row * {
   text-align: center;
