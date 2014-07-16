@@ -1,8 +1,8 @@
 var Lift = Backbone.Model.extend({
   initialize: function() {
   },
-  url: function() {
-    return '/lift/' + this.get('_id');
+  prUrl: function() {
+    return '/pr/' + this.get('_id');
   },
   finishUrl: function() {
     return '/updateDay/';

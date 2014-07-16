@@ -50,6 +50,7 @@ app.put('/edit/:id', handler.updateLift);
 app.put('/updateDay', handler.updateDay);
 app.put('/saveForLater', handler.saveForLater);
 
+app.put('/pr/:id', handler.flagPrForToday);
 app.put('/lift/:id', handler.updateLift);
 
 app.get('/', util.checkUser, handler.renderIndex);

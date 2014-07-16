@@ -100,13 +100,10 @@ IronBook.LiftView = Backbone.View.extend({
   },
   prHandler: function() {
     var that = this;
-    console.log('syncing');
     Backbone.sync('update', this.model, {
-      url: that.model.url(),
-      success: function() {
-        console.log('synced!');
-      }
+      url: that.model.prUrl()
     });
+    $(this.$el).fadeOut();
   },
   finishLift: function() {
     var that = this;
