@@ -5,8 +5,13 @@ IronBook.LiftView = Backbone.View.extend({
   initialize: function() {
     var that = this;
     this.render();
-    this.model.on('change', function() {
-      this.render();
+    /** Handlers for the model **/
+    // this.model.on('change', function() {
+    //   this.render();
+    // }, this);
+    this.model.on('finishLift', function() {
+      this.finishLift();
+      $(this.$el).fadeOut();
     }, this);
 
     var randomColor = randomColors[Math.floor(Math.random() * randomColors.length)];
@@ -42,6 +47,9 @@ IronBook.LiftView = Backbone.View.extend({
   events: {
     'click button': function() {
       this.prHandler();
+    },
+    'click .sets i': function(event) {
+      this.toggleSet(event.target);
     },
     'click .left-rep': function() {
       this.decrementReps();
@@ -122,6 +130,16 @@ IronBook.LiftView = Backbone.View.extend({
         console.log('Maybe tomorrow...');
       }
     });
+  },
+  toggleSet: function(node) {
+    var $node = $(node);
+    if($node.hasClass('fa-square-o')) {
+      $(node).removeClass('fa-square-o').addClass('fa-check-square-o');
+      this.model.incrementDone();
+    } else {
+      $(node).removeClass('fa-check-square-o').addClass('fa-square-o');
+      this.model.decrementDone();
+    }
   }
 
 });

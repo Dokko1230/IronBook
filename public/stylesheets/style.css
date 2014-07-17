@@ -59,6 +59,7 @@ a {
 
 .lifts {
   margin-top: 10px;
+  margin-bottom: 100px;
 }
 .lift {
   padding: 10px;
@@ -175,14 +176,12 @@ body{
 
 /*Styles for the controls*/
 #timer_controls {
-  margin-top: -5px;
+  margin-top: 5px;
 }
 #timer_controls label {
   cursor: pointer;
   padding: 5px 10px;
   background: #efefef;
-  font-family: arial, verdana, tahoma;
-  font-size: 11px;
   border-radius: 0 0 3px 3px;
 }
 input[name="controls"] {display: none;}

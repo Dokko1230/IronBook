@@ -73,6 +73,11 @@
     </div>
     <div class="col-md-3">
       <i class="left-set fa fa-2x fa-minus-circle"></i><span>{{ currentSets }} sets</span><i class="right-set fa fa-2x fa-plus-circle"></i>
+    </div> 
+    <div class="col-md-3 sets">
+      {{#times currentSets}}
+        <i class="fa fa-square-o fa-3x"></i>
+      {{/times}}
     </div>
     <!-- <div class="col-md-3">
       <button class="btn btn-primary">PR!</button>
@@ -134,9 +139,9 @@ wrap up the 'numbers' in a cell to display only 1 digit-->
   </div>
   <!-- Lables for the controls -->
   <div id="timer_controls">
-    <label for="start">Start</label>
-    <label for="stop">Stop</label>
-    <label for="reset">Reset</label>
+    <label for="start" class="fa fa-play fa-2x"></label>
+    <label for="stop" class="fa fa-pause fa-2x"></label>
+    <label for="reset" class="fa fa-fast-backward fa-2x"></label>
   </div>
 </div>
 
@@ -155,6 +160,7 @@ wrap up the 'numbers' in a cell to display only 1 digit-->
 
 <% if (process.env.NODE_ENV !== "production") { %>
 <script src='/javascripts/app.js'></script>
+<script src='/javascripts/utils.js'></script>
 <script src='/javascripts/CreateLiftView.js'></script>
 <script src='/javascripts/Lift.js'></script>
 <script src='/javascripts/Lifts.js'></script>
