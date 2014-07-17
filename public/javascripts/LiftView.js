@@ -9,6 +9,7 @@ IronBook.LiftView = Backbone.View.extend({
     // this.model.on('change', function() {
     //   this.render();
     // }, this);
+    // $(this.$el).addClass(this.model.get('name').split(' ').join('_'));
     this.model.on('finishLift', function() {
       this.finishLift();
       $(this.$el).fadeOut();

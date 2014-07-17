@@ -5,7 +5,6 @@ var Lift = Backbone.Model.extend({
   incrementDone: function() {
     this.set('done', this.get('done') + 1);
     if(this.get('done') === this.get('currentSets')) {
-      debugger;
       this.trigger('finishLift');
     }
   },
