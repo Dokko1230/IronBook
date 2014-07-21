@@ -15,7 +15,12 @@ IronBook.LiftView = Backbone.View.extend({
       $(this.$el).fadeOut();
     }, this);
 
+
     var sets = new IronBook.LiftSets(null, this.model.get('currentSets'));
+    sets.on('finished', function() {
+      this.finishLift();
+    }, this);
+
     this.model.set('sets', sets);
 
     var randomColor = randomColors[Math.floor(Math.random() * randomColors.length)];
@@ -28,10 +33,8 @@ IronBook.LiftView = Backbone.View.extend({
       },
       stop: function(event, ui) {
         if($(this).offset().left > this.offsetWidth * .75 ) {
-          $(this).fadeOut();
           that.finishLift();
         } else if($(this).offset().left < this.offsetWidth * - 1 * .5 ) {
-          $(this).fadeOut();
           that.saveForLater();
         } else {
           $(this).animate({
@@ -50,11 +53,6 @@ IronBook.LiftView = Backbone.View.extend({
     var setsView = new IronBook.LiftSetsView({ collection: this.model.get('sets') });
 
     this.$el.append(setsView.$el);
-
-    // var boxes = this.$el.find('.sets');
-    // for(var i = 0; i < this.model.get('done').length; i++) {
-    //   $(boxes[i]).addClass('fa-check-square-o');
-    // }
   },
   events: {
     'click button': function() {
@@ -115,6 +113,7 @@ IronBook.LiftView = Backbone.View.extend({
     });
   },
   finishLift: function() {
+    $(this.$el).fadeOut();
     var that = this;
     Backbone.sync('update', this.model, {
       url: that.model.finishUrl(),
@@ -124,6 +123,7 @@ IronBook.LiftView = Backbone.View.extend({
     });
   },
   saveForLater: function() {
+    $(this.$el).fadeOut();
     var that = this;
     Backbone.sync('update', this.model, {
       url: that.model.saveForLater(),
