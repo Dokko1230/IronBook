@@ -87,6 +87,17 @@ a {
 .liftName {
 
 }
+.liftSets {
+  display: block;
+  height: 42px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+.liftSets .liftSet{
+  float: left;
+  margin-right: 10px;
+}
 
 .container {
   overflow: hidden;
