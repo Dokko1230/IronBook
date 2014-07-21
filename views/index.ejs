@@ -73,15 +73,14 @@
     <div class="col-md-3">
       <i class="left-set fa fa-2x fa-minus-circle"></i><span>{{ currentSets }} sets</span><i class="right-set fa fa-2x fa-plus-circle"></i>
     </div> 
-    <div class="col-md-3 sets">
-      {{#times currentSets}}
-        <i class="fa fa-square-o fa-3x"></i>
-      {{/times}}
-    </div>
     <!-- <div class="col-md-3">
       <button class="btn btn-primary">PR!</button>
     </div> -->
   </div>
+</script>
+
+<script id='liftSetTemplate' type='text/x-handlebars-template'>
+  <i class="fa fa-square-o fa-3x"></i>
 </script>
 
 <script id='statTemplate' type='text/x-handlebars-template'>

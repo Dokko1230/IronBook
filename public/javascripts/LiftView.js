@@ -5,16 +5,12 @@ IronBook.LiftView = Backbone.View.extend({
   initialize: function() {
     var that = this;
 
-    var sets = new IronBook.LiftSets(this.model.get('currentSets'));
-    var setView = new IronBook.LiftSetsView({ collection: sets });
-
     this.render();
     /** Handlers for the model **/
     this.model.on('change', function() {
       this.render();
     }, this);
 
-    // $(this.$el).addClass(this.model.get('name').split(' ').join('_'));
     this.model.on('finishLift', function() {
       this.finishLift();
       $(this.$el).fadeOut();
@@ -39,7 +35,6 @@ IronBook.LiftView = Backbone.View.extend({
           $(this).animate({
             left: '0'
           }, 750);
-
         }
       }
      });
@@ -49,11 +44,15 @@ IronBook.LiftView = Backbone.View.extend({
   },
   render: function() {
     this.$el.html(this.template(this.model.attributes));
-    var boxes = this.$el.find('.sets');
-    for(var i = 0; i < this.model.get('done').length; i++) {
-      debugger;
-      $(boxes[i]).addClass('fa-check-square-o');
-    }
+    var sets = new IronBook.LiftSets(null, this.model.get('currentSets'));
+    var setsView = new IronBook.LiftSetsView({ collection: sets });
+
+    this.$el.append(setsView.$el);
+
+    // var boxes = this.$el.find('.sets');
+    // for(var i = 0; i < this.model.get('done').length; i++) {
+    //   $(boxes[i]).addClass('fa-check-square-o');
+    // }
   },
   events: {
     'click button': function() {

@@ -4,7 +4,7 @@ IronBook.LiftSetsView = Backbone.View.extend({
     this.addAll();
   },
   render: function() {
-    this.$el.empty();
+    // this.$el.empty();
     return this;
   },
   addAll: function() {
