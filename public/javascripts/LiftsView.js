@@ -1,4 +1,3 @@
-
 IronBook.LiftsView = Backbone.View.extend({
   className: 'lifts',
   initialize: function(){
@@ -12,7 +11,6 @@ IronBook.LiftsView = Backbone.View.extend({
   addAll: function(){
     this.collection.forEach(this.addOne, this);
   },
-
   addOne: function(item){
     var view = new IronBook.LiftView({ model: item });
     this.$el.append(view.$el);
