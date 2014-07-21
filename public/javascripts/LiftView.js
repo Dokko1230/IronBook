@@ -5,7 +5,6 @@ IronBook.LiftView = Backbone.View.extend({
   initialize: function() {
     var that = this;
 
-    this.render();
     /** Handlers for the model **/
     this.model.on('change', function() {
       this.render();
@@ -15,6 +14,9 @@ IronBook.LiftView = Backbone.View.extend({
       this.finishLift();
       $(this.$el).fadeOut();
     }, this);
+
+    var sets = new IronBook.LiftSets(null, this.model.get('currentSets'));
+    this.model.set('sets', sets);
 
     var randomColor = randomColors[Math.floor(Math.random() * randomColors.length)];
 
@@ -41,11 +43,11 @@ IronBook.LiftView = Backbone.View.extend({
     this.$el.on('dragcreate', function(event, ui) {
       console.log(ui.position);
     });
+    this.render();
   },
   render: function() {
     this.$el.html(this.template(this.model.attributes));
-    var sets = new IronBook.LiftSets(null, this.model.get('currentSets'));
-    var setsView = new IronBook.LiftSetsView({ collection: sets });
+    var setsView = new IronBook.LiftSetsView({ collection: this.model.get('sets') });
 
     this.$el.append(setsView.$el);
 
@@ -87,9 +89,11 @@ IronBook.LiftView = Backbone.View.extend({
     },
   },
   decrementSets: function() {
+    this.model.get('sets').pop();
     this.model.set('currentSets', this.model.get('currentSets') - 1);
   },
   incrementSets: function() {
+    this.model.get('sets').push(new IronBook.LiftSet());
     this.model.set('currentSets', this.model.get('currentSets') + 1);
   },
   decrementReps: function() {
@@ -109,13 +113,6 @@ IronBook.LiftView = Backbone.View.extend({
     Backbone.sync('update', this.model, {
       url: that.model.editUrl()
     });
-  },
-  prHandler: function() {
-    var that = this;
-    Backbone.sync('update', this.model, {
-      url: that.model.prUrl()
-    });
-    $(this.$el).fadeOut();
   },
   finishLift: function() {
     var that = this;
