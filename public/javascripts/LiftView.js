@@ -134,17 +134,6 @@ IronBook.LiftView = Backbone.View.extend({
         console.log('Maybe tomorrow...');
       }
     });
-  },
-  toggleSet: function(node) {
-    var $node = $(node);
-    if($node.hasClass('fa-square-o')) {
-      $(node).removeClass('fa-square-o').addClass('fa-check-square-o');
-      this.model.incrementDone();
-    } else {
-      $(node).removeClass('fa-check-square-o').addClass('fa-square-o');
-      this.model.decrementDone();
-    }
   }
-
 });
 
