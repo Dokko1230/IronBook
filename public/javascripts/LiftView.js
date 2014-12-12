@@ -16,12 +16,12 @@ IronBook.LiftView = Backbone.View.extend({
     }, this);
 
 
-    var sets = new IronBook.LiftSets(null, this.model.get('currentSets'));
-    sets.on('finished', function() {
-      this.finishLift();
-    }, this);
+    // var sets = new IronBook.LiftSets(null, this.model.get('currentSets'));
+    // sets.on('finished', function() {
+    //   this.finishLift();
+    // }, this);
 
-    this.model.set('sets', sets);
+    // this.model.set('sets', sets);
 
     var randomColor = randomColors[Math.floor(Math.random() * randomColors.length)];
 
@@ -50,40 +50,37 @@ IronBook.LiftView = Backbone.View.extend({
   },
   render: function() {
     this.$el.html(this.template(this.model.attributes));
-    var setsView = new IronBook.LiftSetsView({ collection: this.model.get('sets') });
+    // var setsView = new IronBook.LiftSetsView({ collection: this.model.get('sets') });
 
-    this.$el.append(setsView.$el);
+    // this.$el.append(setsView.$el);
   },
   events: {
-    'click button': function() {
-      this.prHandler();
+    'click .edit': function() {
+      this.edit();
+    },
+    'click .save': function() {
+      this.save();
     },
     'click .sets i': function(event) {
       this.toggleSet(event.target);
     },
     'click .left-rep': function() {
       this.decrementReps();
-      this.editHandler();
     },
     'click .right-rep': function() {
       this.incrementReps();
-      this.editHandler();
     },
     'click .left-set': function() {
       this.decrementSets();
-      this.editHandler();
     },
     'click .right-set': function() {
       this.incrementSets();
-      this.editHandler();
     },
     'click .left-weight': function() {
       this.decrementWeight();
-      this.editHandler();
     },
     'click .right-weight': function() {
       this.incrementWeight();
-      this.editHandler();
     },
   },
   decrementSets: function() {
@@ -106,11 +103,15 @@ IronBook.LiftView = Backbone.View.extend({
   incrementWeight: function() {
     this.model.set('currentWeight', this.model.get('currentWeight') + 5);
   },
-  editHandler: function() {
+  edit: function() {
+    this.model.set('editing', true);
+  },
+  save: function() {
     var that = this;
     Backbone.sync('update', this.model, {
       url: that.model.editUrl()
     });
+    this.model.set('editing', false);
   },
   finishLift: function() {
     $(this.$el).fadeOut();
@@ -122,6 +123,7 @@ IronBook.LiftView = Backbone.View.extend({
       }
     });
   },
+
   saveForLater: function() {
     $(this.$el).fadeOut();
     var that = this;

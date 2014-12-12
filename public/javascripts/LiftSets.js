@@ -1,4 +1,5 @@
 IronBook.LiftSets = Backbone.Collection.extend({
+
   initialize: function(ignore, count) {
     for(var i = 0; i < count; i++) {
       this.push(new IronBook.LiftSet());
@@ -9,9 +10,11 @@ IronBook.LiftSets = Backbone.Collection.extend({
       }
     }, this);
   },
+
   isFinished: function() {
     return this.models.every(function(item) {
       return item.get('completed');
     });
   }
+
 });

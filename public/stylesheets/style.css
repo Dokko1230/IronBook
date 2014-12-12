@@ -65,6 +65,7 @@ a {
   padding: 10px;
   color: white;
 }
+
 .lift span {
   margin: 0 20px;
   vertical-align: middle;
@@ -75,6 +76,15 @@ a {
 }
 .lift i {
   vertical-align: middle;
+  /*display: none;*/
+  opacity: 0;
+}
+.lift .editing {
+  /*display: inline-block;*/
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
 }
 
 .lift .row * {

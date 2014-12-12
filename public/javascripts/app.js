@@ -90,13 +90,16 @@ IronBook.Router = Backbone.Router.extend({
   create: function(){
     this.swapView(new IronBook.createLiftView());
   },
+
   stats: function() {
     var stats = new IronBook.Stats();
     this.swapView(new IronBook.StatsView({ collection: stats }));
   },
+
   stopwatch: function() {
     this.swapView(new IronBook.StopwatchView());
   }
+
 });
 
 $(function() {

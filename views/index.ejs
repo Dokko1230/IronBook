@@ -60,22 +60,29 @@
 </script>
 
 <script id='liftTemplate' type='text/x-handlebars-template'>
-  <div class="row">
+  <div class="row lift">
     <div class="col-md-3">
       {{ name }} 
     </div>
     <div class="col-md-3">
-      <i class="left-weight fa fa-2x fa-minus-circle"></i><span>{{ currentWeight }} lbs</span><i class="right-weight fa fa-2x fa-plus-circle"></i>
+      <i class="left-weight fa fa-2x fa-minus-circle {{#ifCond editing true}}editing{{/ifCond}}"></i>
+      <span>{{ currentWeight }} lbs</span>
+      <i class="right-weight fa fa-2x fa-plus-circle {{#ifCond editing true}}editing{{/ifCond}}"></i>
     </div>
     <div class="col-md-3">
-      <i class="left-rep fa fa-2x fa-minus-circle"></i><span>{{ currentReps }} reps</span><i class="right-rep fa fa-2x fa-plus-circle"></i>
+      <i class="left-rep fa fa-2x fa-minus-circle {{#ifCond editing true}}editing{{/ifCond}}"></i>
+      <span>{{ currentReps }} reps</span>
+      <i class="right-rep fa fa-2x fa-plus-circle {{#ifCond editing true}}editing{{/ifCond}}"></i>
     </div>
     <div class="col-md-3">
-      <i class="left-set fa fa-2x fa-minus-circle"></i><span>{{ currentSets }} sets</span><i class="right-set fa fa-2x fa-plus-circle"></i>
+      <i class="left-set fa fa-2x fa-minus-circle {{#ifCond editing true}}editing{{/ifCond}}"></i>
+      <span>{{ currentSets }} sets</span>
+      <i class="right-set fa fa-2x fa-plus-circle {{#ifCond editing true}}editing{{/ifCond}}"></i>
     </div> 
-    <!-- <div class="col-md-3">
-      <button class="btn btn-primary">PR!</button>
-    </div> -->
+    <div class="col-md-3">
+      {{#ifCond editing false}}<button class="btn btn-warning edit ">Edit</button>{{/ifCond}}
+      {{#ifCond editing true}}<button class="btn btn-success save">Save</button>{{/ifCond}}
+    </div>
   </div>
 </script>
 

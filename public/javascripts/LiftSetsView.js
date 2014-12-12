@@ -1,4 +1,5 @@
 IronBook.LiftSetsView = Backbone.View.extend({
+
   className: 'liftSets',
   initialize: function() {
     this.render();
@@ -15,4 +16,5 @@ IronBook.LiftSetsView = Backbone.View.extend({
     var view = new IronBook.LiftSetView({ model: item });
     this.$el.append(view.$el);
   }
+
 });

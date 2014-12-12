@@ -1,6 +1,7 @@
 var Lift = Backbone.Model.extend({
   initialize: function() {
     this.set('done', 0);
+    this.set('editing', false);
   },
   incrementDone: function() {
     this.set('done', this.get('done') + 1);
